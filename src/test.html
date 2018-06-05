@@ -1,0 +1,22 @@
+
+<html>
+	<head>
+    	<meta charset="utf-8">
+    	<title>Mocha Tests</title>
+    	<link href="https://unpkg.com/mocha@5.2.0/mocha.css" rel="stylesheet" />
+    	<script src="https://unpkg.com/mocha@5.2.0/mocha.js"></script>
+			<script src="https://unpkg.com/chai@4.1.2/chai.js"></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/node-uuid/1.4.8/uuid.js"></script>
+	</head>
+	<body>
+		<div id="mocha"></div>
+		<script>mocha.setup('bdd')</script>
+		<script type="module" src="./Battleship.test.js"></script>
+		<script type="module" src="./Ship.test.js"></script>
+		<script type="module" src="./Player.test.js"></script>
+		<script type="module">
+    		mocha.checkLeaks();    
+    		mocha.run();
+		</script>
+	</body>
+</html>
