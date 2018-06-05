@@ -1,0 +1,21 @@
+{
+  "name": "jrschumacher-battleship",
+  "version": "1.0.0",
+  "description": "Battleship project",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "lint": "eslint src/index.test.js"
+  },
+  "author": "Ryan Schumacher <j.r.schumacher@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.12.0",
+    "eslint-plugin-mocha": "^5.0.0",
+    "mocha": "^5.2.0"
+  }
+}

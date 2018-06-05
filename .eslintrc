@@ -1,0 +1,16 @@
+{
+  "parser": "babel-eslint",
+  "extends": "airbnb",
+  "plugins": [
+    "import",
+    "mocha"
+  ],
+  "rules": {
+    "import/extensions": "always"
+  },
+  "parserOptions": {
+    "ecmaFeatures": {
+        "modules": true
+    }
+  }
+}
