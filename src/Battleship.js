@@ -7,7 +7,7 @@ export const BATTLESHIP_BOARD_SIZE = 10;
 
 class Battleship {
   constructor(size = BATTLESHIP_BOARD_SIZE) {
-    if (!Number(size) && size <= 0) throw new InvalidBoardSize();
+    if (!Number(size) || size <= 0) throw new InvalidBoardSize();
     // Create board structure
     this.board = Array(size).fill(Array(size).fill([]))
     this.players = [];
