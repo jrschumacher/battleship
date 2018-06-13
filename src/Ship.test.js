@@ -1,41 +1,38 @@
-import Ship from './Ship.js';
-import InvalidShipNameError from './errors/InvalidShipNameError.js';
-import InvalidShipSizeError from './errors/InvalidShipSizeError.js';
+/* globals test expect beforeEach */
 
-describe('ship', () => {
-  it('should throw invalid name error', () => {
-    chai.expect(() => new Ship()).to.throw(InvalidShipNameError);
-  });
+import Ship from './ship';
 
-  it('should throw invalid size error', () => {
-    chai.expect(() => new Ship('test')).to.throw(InvalidShipSizeError);
-  });
+test('should throw invalid name error', () => {
+  expect(() => new Ship()).toThrow();
+});
 
-  it('should create new ship', () => {
-    const name = 'test';
-    const size = 10;
-    const ship = new Ship(name, size);
-    chai.expect(ship.name).to.equal(name);
-    chai.expect(ship.position.length).to.equal(size);
-    chai.expect(ship.hits.length).to.equal(size);
-    chai.expect(ship.hits).to.deep.equal(Array(size).fill(false));
-  });
+test('should throw invalid size error', () => {
+  expect(() => new Ship('test')).toThrow();
+});
 
-  it('should return status of ship not sunk', () => {
-    const name = 'test';
-    const size = 10;
-    const ship = new Ship(name, size);
-    chai.expect(ship.isSunk()).to.be.false;
-    ship.hits[0] = true;
-    chai.expect(ship.isSunk()).to.be.false;
-  });
+test('should create new ship', () => {
+  const name = 'test';
+  const size = 10;
+  const ship = new Ship(name, size);
+  expect(ship.name).toEqual(name);
+  expect(Array.isArray(ship.position)).toEqual(true);
+  expect(Array.isArray(ship.hits)).toEqual(true);
+});
 
-  it('should return status of ship sunk', () => {
-    const name = 'test';
-    const size = 2;
-    const ship = new Ship(name, size);
-    ship.hits[0] = true;
-    ship.hits[1] = true;
-    chai.expect(ship.isSunk()).to.be.true;
-  });
+test('should return status of ship not sunk', () => {
+  const name = 'test';
+  const size = 10;
+  const ship = new Ship(name, size);
+  expect(ship.isSunk()).toBeFalsy();
+  ship.hits[0] = true;
+  expect(ship.isSunk()).toBeFalsy();
+});
+
+test('should return status of ship sunk', () => {
+  const name = 'test';
+  const size = 2;
+  const ship = new Ship(name, size);
+  ship.hits[0] = true;
+  ship.hits[1] = true;
+  expect(ship.isSunk()).toBeTruthy();
 });

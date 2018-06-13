@@ -1,5 +1,5 @@
-import InvalidShipNameError from "./errors/InvalidShipNameError.js";
-import InvalidShipSizeError from "./errors/InvalidShipSizeError.js";
+import InvalidShipNameError from './errors/InvalidShipNameError';
+import InvalidShipSizeError from './errors/InvalidShipSizeError';
 
 class Ship {
   constructor(name, size) {
@@ -7,12 +7,12 @@ class Ship {
     if (!Number(size) || size <= 0) throw new InvalidShipSizeError();
     this.name = name;
     this.size = size;
-    this.position = new Array(size);
-    this.hits = new Array(size).fill(false);
+    this.position = [];
+    this.hits = [];
   }
 
   isSunk() {
-    return this.hits.reduce((hp, pos) => (pos && --hp) || hp, this.size) === 0;
+    return this.hits.length >= this.size;
   }
 
   status() {
@@ -24,8 +24,12 @@ class Ship {
     );
   }
 
-  logHit(pos) {
-    this.hits[pos] = true;
+  attack(x, y) {
+    this.hits.push([x, y]);
+  }
+
+  setPosition(x, y) {
+    this.position.push([x, y]);
   }
 }
 

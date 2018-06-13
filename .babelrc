@@ -1,3 +1,22 @@
 {
-  "presets": ["es2015"]
+  "ignore": [
+    "node_modules/**"
+  ],
+  "presets": [
+    "react",
+    "es2015-node5",
+    "stage-3",
+    ["env", { "targets": { "node": "current" } }]
+  ],
+  "plugins": [
+    ["transform-class-properties"],
+    ["transform-react-jsx", {
+      "pragma": "h",
+      "useBuiltIns": true
+    }],
+    ["transform-object-rest-spread",
+    {
+      "useBuiltIns": true
+    }]
+  ]
 }

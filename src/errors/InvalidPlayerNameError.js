@@ -1,11 +1,9 @@
 class InvalidPlayerNameError extends Error {
-  
-  constructor (...params) {
-    super(params)
-    
-    this.message = 'Invalid name'
+  constructor(...params) {
+    super(params);
+
+    this.message = 'Invalid name';
   }
-  
 }
 
-export default InvalidPlayerNameError
+export default InvalidPlayerNameError;
