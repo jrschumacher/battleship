@@ -10,6 +10,10 @@ I will continue to work on this project and improve the code as well as the UI:
 - [ ] The UX is a little poor with respect to transition grid view. Upon placing a ship or attacking the grid will change immediately. A transitional screen is needed to protect the position of the next player as well as give a better experience to the current player.
 - [ ] More test coverage is needed with the engine and there is no test coverage with the UI.
 
+### Fleet size
+
+You can comment out the fleet size in [Battleship.js](https://github.com/jrschumacher/battleship/blob/master/src/Battleship.js#L19-L40) if you want to test with a smaller sample size
+
 ## Install and Run
 
 ```
