@@ -1,5 +1,5 @@
-import {h, Component, Fragment} from 'ink';
+import { h, Component, Fragment } from 'ink';
 
-module.exports = ({size = 39, symbol = '-'}) => (
+module.exports = ({ size = 39, symbol = '-' }) => (
   <div>{String(symbol).repeat(size)}</div>
 );

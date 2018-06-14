@@ -1,12 +1,11 @@
-'use strict';
 
-import {h, Component, Fragment} from 'ink';
+
+import { h, Component, Fragment } from 'ink';
 import PropTypes from 'prop-types';
 import importJsx from 'import-jsx';
 import TextInput from 'ink-text-input';
 
 class NewPlayer extends Component {
-
   state = {
     playerNumber: 0,
     playerName: '',
@@ -27,7 +26,7 @@ class NewPlayer extends Component {
   }
 
   handleNameSubmit() {
-    const {playerNumber, playerName} = this.state;
+    const { playerNumber, playerName } = this.state;
     if (playerName) this.props.onSubmit(playerName);
     this.setState({
       playerNumber: playerNumber + 1,
@@ -36,7 +35,7 @@ class NewPlayer extends Component {
   }
 
   render() {
-    const {playerNumber} = this.state
+    const { playerNumber } = this.state;
     return (
       <div>
         <span>Player {playerNumber + 1} name: </span>
@@ -46,9 +45,8 @@ class NewPlayer extends Component {
           onSubmit={this.handleNameSubmit}
         />
       </div>
-    )
+    );
   }
-
 }
 
 module.exports = NewPlayer;

@@ -1,4 +1,4 @@
-import {h, Component, Fragment, Color} from 'ink';
+import { h, Component, Fragment, Color } from 'ink';
 import PropTypes from 'prop-types';
 import TextInput from 'ink-text-input';
 import importJsx from 'import-jsx';
@@ -13,7 +13,7 @@ import {
   ATTACK_PREVIOUS,
   ATTACK_SUNK,
   PLACEMENT_INVALID,
-  PLACEMENT_SUCCESS
+  PLACEMENT_SUCCESS,
 } from '../constants';
 import SelectInput from './lib/ink-select-input';
 
@@ -24,7 +24,7 @@ class UserAction extends Component {
     super(props, context);
     this.state = {
       query: '',
-      options: null
+      options: null,
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleAttack = this.handleAttack.bind(this);
@@ -37,7 +37,7 @@ class UserAction extends Component {
 
   handleChange(value) {
     if (value === '' || value.match(/^[a-zA-Z]+(\d+)?$/)) {
-      this.setState({query: value.toUpperCase()});
+      this.setState({ query: value.toUpperCase() });
     }
   }
 
@@ -46,14 +46,14 @@ class UserAction extends Component {
     if (result === PLACEMENT_INVALID) {
       this.setState({
         alert: "Capt'n...those are invalid coordinates.",
-        alertType: ALERT_ERROR
+        alertType: ALERT_ERROR,
       });
     } else {
       this.setState({
         options: result.map(([x, y]) => ({
           label: `(${x}, ${y})`,
-          value: [x, y]
-        }))
+          value: [x, y],
+        })),
       });
     }
   }
@@ -62,12 +62,12 @@ class UserAction extends Component {
     const result = this.props.onShipFinalPlacement(option.value);
     if (result === PLACEMENT_SUCCESS) {
       this.setState({
-        alert: `Capt'n we've positioned the ship!`,
-        alertType: ALERT_SUCCESS
+        alert: 'Capt\'n we\'ve positioned the ship!',
+        alertType: ALERT_SUCCESS,
       });
     }
     this.setState({
-      options: null
+      options: null,
     });
   }
 
@@ -76,27 +76,27 @@ class UserAction extends Component {
     if (result === ATTACK_INVALID) {
       this.setState({
         alert: "Capt'n...those are invalid coordinates.",
-        alertType: ALERT_ERROR
+        alertType: ALERT_ERROR,
       });
     } else if (result === ATTACK_PREVIOUS) {
       this.setState({
         alert: "Capt'n... you already attacked those coordinates.",
-        alertType: ALERT_ERROR
+        alertType: ALERT_ERROR,
       });
     } else if (result === ATTACK_MISS) {
       this.setState({
         alert: "Capt'n we missed the enemy.",
-        alertLevel: ALERT_WARN
+        alertLevel: ALERT_WARN,
       });
     } else if (result === ATTACK_HIT) {
       this.setState({
-        alert: `Capt'n we've hit the enemy!`,
-        alertType: ALERT_SUCCESS
+        alert: 'Capt\'n we\'ve hit the enemy!',
+        alertType: ALERT_SUCCESS,
       });
     } else if (result === ATTACK_SUNK) {
       this.setState({
-        alert: `Capt'n we've sunk the enemy!`,
-        alertType: ALERT_SUCCESS
+        alert: 'Capt\'n we\'ve sunk the enemy!',
+        alertType: ALERT_SUCCESS,
       });
     }
   }
@@ -111,12 +111,12 @@ class UserAction extends Component {
   }
 
   handleClearAlert() {
-    this.setState({query: '', alert: null, alertType: null});
+    this.setState({ query: '', alert: null, alertType: null });
   }
 
   render() {
-    const {promptMsg} = this.props;
-    const {options} = this.state;
+    const { promptMsg } = this.props;
+    const { options } = this.state;
 
     return (
       <div>
@@ -151,7 +151,7 @@ class UserAction extends Component {
 
 UserAction.propTypes = {
   onAttack: PropTypes.func,
-  onShipPlacement: PropTypes.func
+  onShipPlacement: PropTypes.func,
 };
 
 module.exports = UserAction;

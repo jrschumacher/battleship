@@ -1,5 +1,3 @@
-/* globals test expect beforeEach */
-
 import Ship from './ship';
 
 test('should throw invalid name error', () => {

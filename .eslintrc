@@ -1,12 +1,16 @@
 {
   "parser": "babel-eslint",
   "extends": "airbnb",
+  "env": {
+    "jest/globals": true
+  },
   "plugins": [
     "import",
-    "mocha"
+    "react",
+    "jest"
   ],
   "rules": {
-    "import/extensions": "always"
+    "import/extensions": 2
   },
   "parserOptions": {
     "ecmaFeatures": {

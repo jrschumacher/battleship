@@ -1,12 +1,12 @@
-'use strict';
 
-import {h, Component, Fragment} from 'ink';
+
+import { h, Component, Fragment } from 'ink';
 import PropTypes from 'prop-types';
 import importJsx from 'import-jsx';
 import Gradient from 'ink-gradient';
 import BigText from 'ink-big-text';
 import Player from '../player';
-import {GAME_STARTED} from '../Battleship';
+import { GAME_STARTED } from '../Battleship';
 
 const NewPlayer = importJsx('./NewPlayer');
 const PlaceShip = importJsx('./PlaceShip');
@@ -18,15 +18,15 @@ class PreGame extends Component {
   }
 
   registerPlayer(name) {
-    const {game} = this.props;
+    const { game } = this.props;
     const player = new Player(name);
     game.registerPlayer(player);
     if (game.players.length === 2) game.startGameSetup();
   }
 
   render() {
-    const {game} = this.props;
-    const {startingPlayer} = game;
+    const { game } = this.props;
+    const { startingPlayer } = game;
 
     return (
       <Fragment>
@@ -49,7 +49,7 @@ class PreGame extends Component {
 
 PreGame.propTypes = {
   game: PropTypes.object.isRequired,
-  onGameStart: PropTypes.func.isRequired
+  onGameStart: PropTypes.func.isRequired,
 };
 
 module.exports = PreGame;

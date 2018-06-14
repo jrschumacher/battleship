@@ -1,10 +1,7 @@
-import InvalidBoardSize from "./errors/InvalidBoardSize";
-import InvalidMoveError from "./errors/InvalidMoveError";
-import InvalidPlayerError from "./errors/InvalidPlayerError";
-import Player from "./player";
-import Ship from "./ship";
-import TooFewPlayersError from "./errors/TooFewPlayersError";
-import TooManyPlayersError from "./errors/TooManyPlayersError";
+import InvalidBoardSize from './errors/InvalidBoardSize';
+import InvalidPlayerError from './errors/InvalidPlayerError';
+import Player from './player';
+import Ship from './ship';
 import alphaArray from './utils/alphaArray';
 import {
   GAME_OPEN,
@@ -15,8 +12,8 @@ import {
   ATTACK_INVALID,
   ATTACK_MISS,
   ATTACK_PREVIOUS,
-  ATTACK_SUNK
-} from "./constants";
+  ATTACK_SUNK,
+} from './constants';
 
 export const BATTLESHIP_BOARD_SIZE = 10;
 export const BATTLESHIP_FLEET = [
@@ -37,9 +34,9 @@ export const BATTLESHIP_FLEET = [
   //   size: 3
   // },
   {
-    name: "Destroyer",
-    size: 2
-  }
+    name: 'Destroyer',
+    size: 2,
+  },
 ];
 
 class Battleship {
@@ -55,18 +52,14 @@ class Battleship {
     this.startingPlayer = null;
     this.currentPlayer = null;
     this.log = [];
-    this.logEvent("initalize game board");
-  }
-
-  alphaToCoords() {
-    return alphaArray
+    this.logEvent('initalize game board');
   }
 
   logEvent(action, player = null) {
     this.log.push({
       date: new Date(),
       action,
-      player
+      player,
     });
   }
 
@@ -115,9 +108,6 @@ class Battleship {
    * @param {Player} player
    */
   registerPlayer(player) {
-    if (!this.isGameOpen()) {
-      throw new GameIsClosed();
-    }
     if (!(player instanceof Player)) {
       throw new InvalidPlayerError();
     }
@@ -125,9 +115,9 @@ class Battleship {
       num: this.players.length,
       player,
       ships: BATTLESHIP_FLEET.map(ship => new Ship(ship.name, ship.size)),
-      shipsPlaced: 0
+      shipsPlaced: 0,
     });
-    this.logEvent("register new player", player);
+    this.logEvent('register new player', player);
   }
 
   /**
@@ -141,22 +131,19 @@ class Battleship {
    */
   startGameSetup() {
     const numOfPlayers = this.players.length;
-    if (numOfPlayers <= 0) {
-      throw new InvalidNumberOfPlayersError();
-    }
-    this.board = [...new Array(this.boardSize)].map((x, i) =>
-      [...new Array(this.boardSize)].map((x, i) =>
+    if (numOfPlayers <= 0) return false;
+    this.board = [...new Array(this.boardSize)].map(() =>
+      [...new Array(this.boardSize)].map(() =>
         [...new Array(numOfPlayers)].map((x, i) => ({
           num: i,
           player: this.players[i],
           hit: false,
-          ship: false
-        }))
-      )
-    );
+          ship: false,
+        }))));
     this.startingPlayer = Math.floor(Math.random() * numOfPlayers);
     this.currentPlayer = this.startingPlayer;
-    this.logEvent("game setup started");
+    this.logEvent('game setup started');
+    return true;
   }
 
   startGame() {
@@ -199,28 +186,26 @@ class Battleship {
    * @param {integer} y1
    * @return {Array} Returns an array positions or an empty array
    */
-  filterShipCollisions = (shipSize, x, y, x1, y1) => {
-    return [...new Array(shipSize)].reduce((p, o, i) => {
-      if (Array.isArray(p)) {
-        // No difference
-        if (y === y1 && x === x1) return false;
+  filterShipCollisions = (shipSize, x, y, x1, y1) => [...new Array(shipSize)].reduce((p, o, i) => {
+    if (Array.isArray(p)) {
+      // No difference
+      if (y === y1 && x === x1) return false;
 
-        let n;
-        let m;
-        if (y === y1) { // Compute x diff
-          n = x < x1 ? x + i : x - i;
-          m = y
-        } else { // Compute y diff
-          n = x;
-          m = y < y1 ? y + i : y - i;
-        }
+      let n;
+      let m;
+      if (y === y1) { // Compute x diff
+        n = x < x1 ? x + i : x - i;
+        m = y;
+      } else { // Compute y diff
+        n = x;
+        m = y < y1 ? y + i : y - i;
+      }
 
-        // If no ship exists else bail
-        if (this.board[m][n][this.currentPlayer].ship === false) return [].concat(p, [[n, m]]);
-        else return false;
-      } else return false;
-    }, []) || [];
-  }
+      // If no ship exists else bail
+      if (this.board[m][n][this.currentPlayer].ship === false) return [].concat(p, [[n, m]]);
+      return false;
+    } return false;
+  }, []) || []
 
   findPlacements(ship, x, y) {
     if (x >= 0 && y >= 0 && x < this.boardSize && y < this.boardSize) {
@@ -235,9 +220,7 @@ class Battleship {
           if (rightOf < this.boardSize) p.push(j ? [x, rightOf] : [rightOf, y]);
           return p;
         }, [])
-        .filter(([x1, y1]) => {
-          return this.filterShipCollisions(size, x, y, x1, y1).length || false;
-        });
+        .filter(([x1, y1]) => this.filterShipCollisions(size, x, y, x1, y1).length || false);
     }
     return [];
   }
@@ -253,7 +236,7 @@ class Battleship {
       });
       this.getCurrentPlayer().shipsPlaced += 1;
       return true;
-    } else return false;
+    } return false;
   }
 
   // Game has started
@@ -263,22 +246,22 @@ class Battleship {
   }
 
   hasPlayerHit(x, y) {
-    return this.validCoordinates(x, y) && this.board[y][x][this.currentPlayer].hit || false;
+    return (this.validCoordinates(x, y) && this.board[y][x][this.currentPlayer].hit) || false;
   }
 
   // TODO: Fix this
   getThisPlayerShip(x, y) {
-    return this.validCoordinates(x, y) && this.board[y][x][this.currentPlayer].ship || false;
+    return (this.validCoordinates(x, y) && this.board[y][x][this.currentPlayer].ship) || false;
   }
 
   getNextPlayerShip(x, y) {
-    return this.validCoordinates(x, y) && this.board[y][x][this.incrementPlayer()].ship || false;
+    return (this.validCoordinates(x, y) && this.board[y][x][this.incrementPlayer()].ship) || false;
   }
 
   validCoordinates(x, y) {
     return (
-      typeof x === "number" &&
-      typeof y === "number" &&
+      typeof x === 'number' &&
+      typeof y === 'number' &&
       x >= 0 &&
       y >= 0 &&
       x < this.boardSize &&

@@ -10,7 +10,7 @@ import {
   ATTACK_SUNK,
   ATTACK_PREVIOUS,
   GAME_STARTED,
-  GAME_OVER
+  GAME_OVER,
 } from './constants';
 
 let game;
@@ -45,7 +45,7 @@ test('should log all actions', () => {
   game.logEvent(action);
   expect(game.log).toHaveLength(2);
   expect(game.log[1]).toMatchObject({
-    action
+    action,
   });
 });
 
@@ -76,15 +76,15 @@ test('should throw error on invalid player', () => {
 test('should register a new player', () => {
   const player1 = new Player('bob');
   game.registerPlayer(player1);
-  expect(game.players[0]).toMatchObject({player: player1});
+  expect(game.players[0]).toMatchObject({ player: player1 });
   const player2 = new Player('bob');
   game.registerPlayer(player2);
-  expect(game.players[0]).toMatchObject({player: player1});
-  expect(game.players[1]).toMatchObject({player: player2});
+  expect(game.players[0]).toMatchObject({ player: player1 });
+  expect(game.players[1]).toMatchObject({ player: player2 });
 });
 
 test('should not start game setup', () => {
-  expect(() => game.startGameSetup()).toThrow();
+  expect(game.startGameSetup()).toEqual(false);
 });
 
 test('should start game setup', () => {
@@ -104,31 +104,31 @@ test('should get values', () => {
   const ship = new Ship('test', 2);
   expect(game.findPlacements(ship, 0, 0)).toEqual([
     [ship.size, 0],
-    [0, ship.size]
+    [0, ship.size],
   ]);
   expect(game.findPlacements(ship, 0, 9)).toEqual([
     [ship.size, 9],
-    [0, 9 - ship.size]
+    [0, 9 - ship.size],
   ]);
   expect(game.findPlacements(ship, 9, 0)).toEqual([
     [9 - ship.size, 0],
-    [9, ship.size]
+    [9, ship.size],
   ]);
   expect(game.findPlacements(ship, 9, 9)).toEqual([
     [9 - ship.size, 9],
-    [9, 9 - ship.size]
+    [9, 9 - ship.size],
   ]);
   expect(game.findPlacements(ship, 2, 2)).toEqual([
     [2 - ship.size, 2],
     [ship.size + 2, 2],
     [2, 2 - ship.size],
-    [2, ship.size + 2]
+    [2, ship.size + 2],
   ]);
   expect(game.findPlacements(ship, 5, 3)).toEqual([
     [5 - ship.size, 3],
     [ship.size + 5, 3],
     [5, 3 - ship.size],
-    [5, ship.size + 3]
+    [5, ship.size + 3],
   ]);
 });
 
@@ -152,10 +152,9 @@ test('should attack should be invalid', () => {
     [11, 0],
     [0, 11],
     [null, null],
-    [undefined, undefined]
-  ].forEach(({x, y}) =>
-    expect(game.attackPosition(x, y)).toEqual(ATTACK_INVALID)
-  );
+    [undefined, undefined],
+  ].forEach(({ x, y }) =>
+    expect(game.attackPosition(x, y)).toEqual(ATTACK_INVALID));
 });
 
 test('should attack should be miss', () => {

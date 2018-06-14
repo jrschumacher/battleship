@@ -17,10 +17,8 @@ class Ship {
 
   status() {
     return this.hits.reduce(
-      (hit, pos) => {
-        hit[0] += pos ? 1 : 0;
-      },
-      [0, this.size]
+      (hit, pos) => [hit[0] + pos ? 1 : 0, hit[1]],
+      [0, this.size],
     );
   }
 

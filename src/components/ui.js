@@ -1,6 +1,6 @@
-'use strict';
 
-import {h, Component} from 'ink';
+
+import { h, Component } from 'ink';
 import PropTypes from 'prop-types';
 import importJsx from 'import-jsx';
 import Battleship from '../battleship';
@@ -23,7 +23,7 @@ class UI extends Component {
   handleGameOver() {}
 
   render() {
-    const {game} = this.state;
+    const { game } = this.state;
     return (
       <div>
         {game.isGameOpen() && (
@@ -41,11 +41,11 @@ class UI extends Component {
 UI.Separator = importJsx('./ui/Separator');
 
 UI.propTypes = {
-  boardSize: PropTypes.number
+  boardSize: PropTypes.number,
 };
 
 UI.defaultProps = {
-  boardSize: 10
+  boardSize: 10,
 };
 
 module.exports = UI;

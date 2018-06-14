@@ -1,6 +1,6 @@
-'use strict';
 
-import {h, Component} from 'ink';
+
+import { h, Component } from 'ink';
 import PropTypes from 'prop-types';
 import importJsx from 'import-jsx';
 import alphaArray from '../utils/alphaArray';
@@ -9,7 +9,7 @@ import {
   ATTACK_INVALID,
   ATTACK_MISS,
   ATTACK_PREVIOUS,
-  ATTACK_SUNK
+  ATTACK_SUNK,
 } from '../constants';
 
 const Separator = importJsx('./ui/Separator');
@@ -27,11 +27,11 @@ class Game extends Component {
     this.updateBoard = this.updateBoard.bind(this);
 
     this.state = {
-      boardUpdated: false
+      boardUpdated: false,
     };
     this.state.currentPlayer = 0;
     this.state.actionLog = [
-      {action: 'GAME_STARTED', message: 'game has started'}
+      { action: 'GAME_STARTED', message: 'game has started' },
     ];
     // // TODO: Use battleship logic
     // this.state.board = [...new Array(this.props.boardSize)].map(() =>
@@ -57,36 +57,34 @@ class Game extends Component {
       actionLog: [].concat(this.state.actionLog, {
         action,
         player,
-        message
-      })
+        message,
+      }),
     });
   }
 
   getCoordinates(coordinates) {
-    const {board} = this.props.game;
+    const { board } = this.props.game;
     const coorMatch = coordinates.toUpperCase().match(/([A-Z]+)\s*(\d+)/);
     if (!coorMatch || coorMatch.length < 3) return {};
-    const x = this.alphaArray.findIndex(
-      alpha => alpha.localeCompare(coorMatch[1]) === 0
-    );
+    const x = this.alphaArray.findIndex(alpha => alpha.localeCompare(coorMatch[1]) === 0);
     if (typeof x !== 'number' || x < 0 || x >= board.length) return {};
     const y = Number(coorMatch[2]) - 1;
     if (y < 0 || y >= board[x].length) return {};
-    return {x, y, coords: `${coorMatch[1]}, ${coorMatch[2]}`};
+    return { x, y, coords: `${coorMatch[1]}, ${coorMatch[2]}` };
   }
 
   handleAttack(coordinates) {
-    const {game} = this.props;
-    const {board, currentPlayer} = game;
-    const {x, y, coords} = this.getCoordinates(coordinates);
+    const { game } = this.props;
+    const { board, currentPlayer } = game;
+    const { x, y, coords } = this.getCoordinates(coordinates);
     const action = game.attackPosition(x, y);
     this.updateBoard(x, y, coords, action);
     return action;
   }
 
   updateBoard(x, y, coords, action) {
-    const {game} = this.props;
-    const {board} = game;
+    const { game } = this.props;
+    const { board } = game;
     const currentPlayer = game.getCurrentPlayer().player;
     const nextPlayer = game.getNextPlayer().player;
     let message = '';
@@ -128,20 +126,20 @@ class Game extends Component {
     if (game.validAttackActions(action)) {
       game.endCurrentPlayer();
       this.setState({
-        boardUpdated: true
+        boardUpdated: true,
       });
     }
   }
 
   handleGridRender() {
     this.setState({
-      boardUpdated: false
+      boardUpdated: false,
     });
   }
 
   render() {
-    const {game} = this.props;
-    const {board} = game;
+    const { game } = this.props;
+    const { board } = game;
     const actionLog = this.state.actionLog.slice(-1)[0] || {};
     return (
       <div>
@@ -165,7 +163,8 @@ class Game extends Component {
 }
 
 Game.PropTypes = {
-  game: PropTypes.object.isRequired
+  game: PropTypes.object.isRequired,
+  'game.boardSize': PropTypes.number.isRequired,
 };
 
 module.exports = Game;
