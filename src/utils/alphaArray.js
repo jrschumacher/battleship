@@ -6,6 +6,8 @@ export default (size = 10) =>
     if (inc > 26) throw new Error('Size for num to alpha too large');
     return String.fromCharCode.apply(
       null,
-      [].concat(inc > 1 ? [inc - 2 + A_CHAR_CODE] : [], [i % LIA + A_CHAR_CODE])
+      [].concat(inc > 1 ? [inc - 2 + A_CHAR_CODE] : [], [
+        (i % LIA) + A_CHAR_CODE
+      ])
     );
   });

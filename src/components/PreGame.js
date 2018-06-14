@@ -49,7 +49,7 @@ class PreGame extends Component {
 
 PreGame.propTypes = {
   game: PropTypes.object.isRequired,
-  onGameStart: PropTypes.func.isRequired,
+  onGameStart: PropTypes.func.isRequired
 };
 
 module.exports = PreGame;

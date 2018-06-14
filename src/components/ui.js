@@ -41,11 +41,11 @@ class UI extends Component {
 UI.Separator = importJsx('./ui/Separator');
 
 UI.propTypes = {
-  boardSize: PropTypes.number,
+  boardSize: PropTypes.number
 };
 
 UI.defaultProps = {
-  boardSize: 10,
+  boardSize: 10
 };
 
 module.exports = UI;

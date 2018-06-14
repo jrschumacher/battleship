@@ -17,14 +17,14 @@ const Indicator = ({isSelected}) => {
 };
 
 Indicator.propTypes = {
-  isSelected: PropTypes.bool.isRequired,
+  isSelected: PropTypes.bool.isRequired
 };
 
 const Item = ({isSelected, label}) => <Color blue={isSelected}>{label}</Color>;
 
 Item.propTypes = {
   isSelected: PropTypes.bool.isRequired,
-  label: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired
 };
 
 class SelectInput extends Component {
@@ -33,7 +33,7 @@ class SelectInput extends Component {
 
     this.state = {
       rotateIndex: 0,
-      selectedIndex: 0,
+      selectedIndex: 0
     };
 
     this.handleKeyPress = this.handleKeyPress.bind(this);
@@ -72,7 +72,7 @@ class SelectInput extends Component {
     if (!isEqual(this.props.items, nextProps.items)) {
       this.setState({
         rotateIndex: 0,
-        selectedIndex: 0,
+        selectedIndex: 0
       });
     }
   }
@@ -93,7 +93,7 @@ class SelectInput extends Component {
 
       this.setState({
         rotateIndex: atFirstIndex ? rotateIndex + 1 : rotateIndex,
-        selectedIndex: atFirstIndex ? nextIndex : selectedIndex - 1,
+        selectedIndex: atFirstIndex ? nextIndex : selectedIndex - 1
       });
     }
 
@@ -104,7 +104,7 @@ class SelectInput extends Component {
 
       this.setState({
         rotateIndex: atLastIndex ? rotateIndex - 1 : rotateIndex,
-        selectedIndex: atLastIndex ? nextIndex : selectedIndex + 1,
+        selectedIndex: atLastIndex ? nextIndex : selectedIndex + 1
       });
     }
 
@@ -123,7 +123,7 @@ SelectInput.propTypes = {
   indicatorComponent: PropTypes.func,
   itemComponent: PropTypes.func,
   limit: PropTypes.number,
-  onSelect: PropTypes.func,
+  onSelect: PropTypes.func
 };
 
 SelectInput.defaultProps = {
@@ -132,7 +132,7 @@ SelectInput.defaultProps = {
   indicatorComponent: Indicator,
   itemComponent: Item,
   limit: null,
-  onSelect: noop,
+  onSelect: noop
 };
 
 module.exports = exports = SelectInput; // eslint-disable-line no-multi-assign

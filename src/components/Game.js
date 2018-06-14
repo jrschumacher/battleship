@@ -9,7 +9,7 @@ import {
   ATTACK_INVALID,
   ATTACK_MISS,
   ATTACK_PREVIOUS,
-  ATTACK_SUNK,
+  ATTACK_SUNK
 } from '../constants';
 
 const Separator = importJsx('./ui/Separator');
@@ -27,11 +27,11 @@ class Game extends Component {
     this.updateBoard = this.updateBoard.bind(this);
 
     this.state = {
-      boardUpdated: false,
+      boardUpdated: false
     };
     this.state.currentPlayer = 0;
     this.state.actionLog = [
-      {action: 'GAME_STARTED', message: 'game has started'},
+      {action: 'GAME_STARTED', message: 'game has started'}
     ];
     // // TODO: Use battleship logic
     // this.state.board = [...new Array(this.props.boardSize)].map(() =>
@@ -57,8 +57,8 @@ class Game extends Component {
       actionLog: [].concat(this.state.actionLog, {
         action,
         player,
-        message,
-      }),
+        message
+      })
     });
   }
 
@@ -128,14 +128,14 @@ class Game extends Component {
     if (game.validAttackActions(action)) {
       game.endCurrentPlayer();
       this.setState({
-        boardUpdated: true,
+        boardUpdated: true
       });
     }
   }
 
   handleGridRender() {
     this.setState({
-      boardUpdated: false,
+      boardUpdated: false
     });
   }
 
@@ -165,7 +165,7 @@ class Game extends Component {
 }
 
 Game.PropTypes = {
-  game: PropTypes.object.isRequired,
+  game: PropTypes.object.isRequired
 };
 
 module.exports = Game;

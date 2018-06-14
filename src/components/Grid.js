@@ -67,7 +67,7 @@ class Grid extends Component {
 }
 
 Grid.propTypes = {
-  game: PropTypes.object.isRequired,
+  game: PropTypes.object.isRequired
 };
 
 Grid.defaultProps = {};
