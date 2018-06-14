@@ -14,7 +14,7 @@
 		"node": ">=8"
 	},
 	"scripts": {
-		"clean": "rimraf bin/**/*.js",
+		"clean": "rimraf -g bin/*.js bin/components/ bin/errors/ bin/utils",
 		"build": "babel src -d bin",
 		"start": "yarn build; node bin/cli.js",
 		"lint": "eslint src/",
