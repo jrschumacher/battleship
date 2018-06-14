@@ -3,7 +3,7 @@
 	"version": "0.0.0",
 	"description": "CLI to battleship",
 	"license": "MIT",
-	"repository": "jrschumacher/jrscumacher-battleship",
+	"repository": "https://github.com/jrschumacher/battleship.git",
 	"author": {
 		"name": "Ryan Schumacher",
 		"email": "j.r.schumacher@gmail.com",
