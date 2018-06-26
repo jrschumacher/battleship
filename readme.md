@@ -4,6 +4,8 @@ This was developed for a technical skills test. The start of the application was
 
 I will continue to work on this project and improve the code as well as the UI:
 
+[![asciicast](https://asciinema.org/a/UPyNE3N1S8goa9ZWlPw1BMXgq.png)](https://asciinema.org/a/UPyNE3N1S8goa9ZWlPw1BMXgq)
+
 ### Known Issues
 
 - [ ] When placing your ships the grid does not render the ship. This is a confusing bug as the game engine knows the ship is there when the placement happens, but when the grid checks it seems it doesn't see any ship placements. Due to a bug with Ink which causes console output to initate a rerender of the component I am currently unable to sort it out
