@@ -1,5 +1,3 @@
-
-
 import { h, Component } from 'ink';
 import PropTypes from 'prop-types';
 import importJsx from 'import-jsx';

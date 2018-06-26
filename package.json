@@ -1,144 +1,92 @@
 {
-	"name": "jrscumacher-battleship",
-	"version": "0.0.0",
-	"description": "CLI to battleship",
-	"license": "MIT",
-	"repository": "https://github.com/jrschumacher/battleship.git",
-	"author": {
-		"name": "Ryan Schumacher",
-		"email": "j.r.schumacher@gmail.com",
-		"url": "jrschumacher.github.com"
-	},
-	"bin": "cli.js",
-	"engines": {
-		"node": ">=8"
-	},
-	"scripts": {
-		"clean": "rimraf -g bin/*.js bin/components/ bin/errors/ bin/utils",
-		"build": "babel src -d bin",
-		"start": "yarn build; node bin/cli.js",
-		"lint": "eslint src/",
-		"test:unit": "jest src/"
-	},
-	"files": [
-		"cli.js",
-		"ui.js"
-	],
-	"keywords": [
-		"battleship",
-		"ink",
-		"react"
-	],
-	"dependencies": {
-		"arr-rotate": "^1.0.0",
-		"figures": "^2.0.0",
-		"ink": "^0.5.0",
-		"ink-big-text": "^0.3.0",
-		"ink-gradient": "^0.1.1",
-		"ink-spinner": "^2.0.0",
-		"ink-text-input": "^2.0.0",
-		"lodash.isequal": "^4.5.0",
-		"meow": "^5.0.0",
-		"prop-types": "^15.6.1",
-		"uuid": "^3.2.1"
-	},
-	"devDependencies": {
-		"ava": "^0.25.0",
-		"babel-core": "^6.26.3",
-		"babel-eslint": "^8.2.3",
-		"babel-jest": "^23.0.1",
-		"babel-plugin-transform-class-properties": "^6.24.1",
-		"babel-plugin-transform-object-rest-spread": "^6.26.0",
-		"babel-plugin-transform-react-jsx": "^6.24.1",
-		"babel-preset-env": "^1.7.0",
-		"babel-preset-es2015": "^6.24.1",
-		"babel-preset-es2015-node5": "^1.2.0",
-		"babel-preset-es2018": "^1.0.0",
-		"babel-preset-react": "^6.24.1",
-		"babel-preset-stage-0": "^6.24.1",
-		"eslint-config-xo-react": "^0.16.0",
-		"eslint-plugin-import": "^2.12.0",
-		"eslint-plugin-jest": "^21.17.0",
-		"eslint-plugin-react": "^7.9.1",
-		"import-jsx": "^1.3.0",
-		"jest": "^23.1.0",
-		"jest-tobetype": "^1.1.0",
-		"nyc": "^11.7.1",
-		"prettier-eslint": "^8.8.1",
-		"regenerator-runtime": "^0.11.1",
-		"rimraf": "^2.6.2",
-		"xo": "^0.21.1"
-	},
-	"ava": {
-		"babel": {
-			"presets": [
-				"@ava/stage-4"
-			],
-			"plugins": [
-				[
-					"transform-react-jsx",
-					{
-						"pragma": "h",
-						"useBuiltIns": true
-					}
-				]
-			]
-		}
-	},
-	"jest": {
-		"verbose": true,
-		"transform": {
-			"^.+\\.js$": "babel-jest"
-		},
-		"globals": {
-			"NODE_ENV": "test"
-		},
-		"moduleFileExtensions": [
-			"js",
-			"jsx"
-		],
-		"moduleDirectories": [
-			"node_modules",
-			"src"
-		]
-	},
-	"xo": {
-		"semicolon": true,
-		"space": true,
-		"prettier": true,
-		"esnext": false,
-		"trailingComma": true,
-		"singleQuote": true,
-		"extends": [
-			"xo-react"
-		],
-		"rules": {
-			"react/no-unused-prop-types": 1
-		},
-		"settings": {
-			"react": {
-				"pragma": "h"
-			}
-		},
-		"overrides": [
-			{
-				"test": "src/components/**/*.js",
-				"rules": {
-					"unicorn/filename-case": [
-						"error",
-						{
-							"case": "pascalCase"
-						}
-					]
-				}
-			},
-			{
-				"test": "src/*.test.js",
-				"globals": [
-					"test",
-					"expect"
-				]
-			}
-		]
-	}
+  "name": "jrscumacher-battleship",
+  "version": "0.0.0",
+  "description": "CLI to battleship",
+  "license": "MIT",
+  "repository": "https://github.com/jrschumacher/battleship.git",
+  "author": {
+    "name": "Ryan Schumacher",
+    "email": "j.r.schumacher@gmail.com",
+    "url": "jrschumacher.github.com"
+  },
+  "bin": "cli.js",
+  "engines": {
+    "node": ">=8"
+  },
+  "scripts": {
+    "clean": "rimraf -g bin/*.js bin/components/ bin/errors/ bin/utils",
+    "build": "babel src -d bin",
+    "start": "yarn build; node bin/cli.js",
+    "lint": "eslint src/",
+    "test": "yarn test:engine;",
+    "test:components": "echo \"Cannot run tests for components due to issue with import-jsx which is needed to run the app uncompiled.\"",
+    "test:engine": "jest src/*.test.js"
+  },
+  "files": [
+    "cli.js",
+    "ui.js"
+  ],
+  "keywords": [
+    "battleship",
+    "ink",
+    "react"
+  ],
+  "dependencies": {
+    "arr-rotate": "^1.0.0",
+    "figures": "^2.0.0",
+    "ink": "^0.5.0",
+    "ink-big-text": "^0.3.0",
+    "ink-gradient": "^0.1.1",
+    "ink-spinner": "^2.0.0",
+    "ink-text-input": "^2.0.0",
+    "lodash.isequal": "^4.5.0",
+    "meow": "^5.0.0",
+    "prop-types": "^15.6.1",
+    "uuid": "^3.2.1"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-eslint": "^8.2.3",
+    "babel-jest": "^23.2.0",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-plugin-transform-react-jsx": "^6.24.1",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-es2015-node5": "^1.2.0",
+    "babel-preset-es2018": "^1.0.0",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "enzyme": "^3.3.0",
+    "eslint-config-xo-react": "^0.16.0",
+    "eslint-plugin-import": "^2.12.0",
+    "eslint-plugin-jest": "^21.17.0",
+    "eslint-plugin-react": "^7.9.1",
+    "import-jsx": "^1.3.0",
+    "jest": "^23.1.0",
+    "jest-tobetype": "^1.1.0",
+    "nyc": "^11.7.1",
+    "prettier-eslint": "^8.8.1",
+    "regenerator-runtime": "^0.11.1",
+    "rimraf": "^2.6.2"
+  },
+  "jest": {
+    "verbose": true,
+    "transform": {
+      "^.+\\.js$": "babel-jest"
+    },
+    "globals": {
+      "NODE_ENV": "test"
+    },
+    "moduleFileExtensions": [
+      "js",
+      "jsx",
+      "json"
+    ],
+    "moduleDirectories": [
+      "node_modules",
+      "src"
+    ]
+  }
 }
